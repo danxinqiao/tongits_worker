@@ -24,7 +24,7 @@ export async function onRequest(context) {
 	const origin = request.headers.get("Origin");
 	modifiedResponse.headers.set('Access-Control-Allow-Origin', origin);
 	modifiedResponse.headers.set('Access-Control-Expose-Headers', 'Content-Disposition');
-  modifiedResponse.headers.set('Content-Type', 'application/vnd.android.package-archive');
+  modifiedResponse.headers.set('Content-Type', 'application/octet-stream');
   modifiedResponse.headers.set('Content-Disposition', 'attachment; filename="TongitsPinoy.apk"');
 
   return modifiedResponse;
