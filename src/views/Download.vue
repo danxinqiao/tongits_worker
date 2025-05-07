@@ -7,5 +7,12 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const downUrl = "/api/downApk";
 
-router.push(downUrl);
+const downloadFile = () => {
+  window.location.href = downUrl;
+  setTimeout(() => router.push("/"), 3000);
+};
+
+onMounted(() => {
+  downloadFile();
+});
 </script>

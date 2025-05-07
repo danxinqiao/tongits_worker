@@ -20,7 +20,8 @@ export async function onRequest(context) {
   const response = await fetch(fileUrl);
   const modifiedResponse = new Response(response.body, response);
 
-  // 设置正确的 MIME 类型和下载头（关键！）
+	// 设置正确的 MIME 类型和下载头（关键！）
+	modifiedResponse.headers.set('Access-Control-Expose-Headers', 'Content-Disposition');
   modifiedResponse.headers.set('Content-Type', 'application/vnd.android.package-archive');
   modifiedResponse.headers.set('Content-Disposition', 'attachment; filename="TongitsPinoy.apk"');
 
