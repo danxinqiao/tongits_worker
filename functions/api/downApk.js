@@ -22,7 +22,7 @@ export async function onRequest(context) {
 
   // 设置正确的 MIME 类型和下载头（关键！）
   modifiedResponse.headers.set('Content-Type', 'application/vnd.android.package-archive');
-  modifiedResponse.headers.set('Content-Disposition', 'attachment; filename="app.apk"');
+  modifiedResponse.headers.set('Content-Disposition', 'attachment; filename="TongitsPinoy.apk"');
 
   return modifiedResponse;
 }
