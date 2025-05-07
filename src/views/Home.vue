@@ -4,6 +4,9 @@ export default {
     return {
       isIOS: false,
       isMobile: false,
+      down_apple_shop: import.meta.env.VITE_DOWN_APPLE_SHOP,
+      down_official_apk: import.meta.env.VITE_DOWN_OFFICIAL_APK,
+      down_google_shop: import.meta.env.VITE_DOWN_GOOGLE_SHOP,
     };
   },
   created() {
@@ -19,7 +22,7 @@ export default {
       // 检测移动端设备
       this.isMobile =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-          userAgent
+          userAgent,
         );
     },
   },
@@ -50,10 +53,7 @@ export default {
       </div>
       <div class="download_box">
         <div>
-          <a
-            target="_blank"
-            href="https://apps.apple.com/ph/app/tongits-mania/id6742527198?platform=iphone"
-          >
+          <a target="_blank" :href="down_apple_shop">
             <img
               class="home_img home_img_m"
               src="/btn_ios_1.png"
@@ -62,10 +62,7 @@ export default {
           </a>
         </div>
         <div>
-          <a
-            href="https://res.tongitspinoy.com/TongitsPinoy.apk"
-            target="_blank"
-          >
+          <a :href="down_official_apk" target="_blank">
             <img
               class="home_img home_img_m"
               src="/btn_android_1.png"
@@ -75,7 +72,7 @@ export default {
         </div>
         <!-- <div>
           <a
-            href="https://play.google.com/store/apps/details?id=com.tongits.playpinoy"
+            :href="down_google_shop"
             target="_blank"
           >
             <img
@@ -99,10 +96,7 @@ export default {
       </div>
       <div class="download_box">
         <div v-if="isIOS">
-          <a
-            target="_blank"
-            href="https://apps.apple.com/ph/app/tongits-mania/id6742527198?platform=iphone"
-          >
+          <a target="_blank" :href="down_apple_shop">
             <img
               class="home_img home_img_m"
               src="/btn_ios_1.png"
@@ -112,10 +106,7 @@ export default {
         </div>
         <template v-if="!isIOS">
           <div>
-            <a
-              href="https://res.tongitspinoy.com/TongitsPinoy.apk"
-              target="_blank"
-            >
+            <a :href="down_official_apk" target="_blank">
               <img
                 class="home_img home_img_m"
                 src="/btn_android_1.png"
@@ -125,7 +116,7 @@ export default {
           </div>
           <!-- <div>
             <a
-              href="https://play.google.com/store/apps/details?id=com.tongits.playpinoy"
+              :href="down_google_shop"
               target="_blank"
             >
               <img

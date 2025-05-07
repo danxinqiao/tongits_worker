@@ -54,6 +54,12 @@ const router = createRouter({
       meta: { showHeaderFooter: true },
     },
     {
+      path: "/download",
+      name: "download",
+      component: () => import("../views/Download.vue"),
+      meta: { showHeaderFooter: true },
+    },
+    {
       path: "/iosGuidance",
       name: "iosGuidance",
       component: () => import("../views/IosGuidance.vue"),
@@ -66,25 +72,25 @@ const router = createRouter({
       meta: { showHeaderFooter: false },
     },
     {
-      path: "/share/hall",
+      path: "/hall",
       name: "shareHall",
       component: () => import("../views/share/playerShare/index.vue"),
       meta: { showHeaderFooter: false },
     },
     {
-      path: "/share/table",
+      path: "/table",
       name: "shareTable",
       component: () => import("../views/share/playerShare/index.vue"),
       meta: { showHeaderFooter: false },
     },
     {
-      path: "/share/club",
+      path: "/club",
       name: "shareClub",
       component: () => import("../views/share/playerShare/index.vue"),
       meta: { showHeaderFooter: false },
     },
     {
-      path: "/share/agent",
+      path: "/agent",
       name: "shareAgent",
       component: () => import("../views/share/playerShare/index.vue"),
       meta: { showHeaderFooter: false },

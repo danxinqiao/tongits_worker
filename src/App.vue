@@ -39,7 +39,7 @@ const computedStyle = computed(() => {
 }
 
 /* 固定 Header 的样式 */
-::v-deep .fixed-header {
+:deep(.fixed-header) {
   position: fixed;
   top: 0;
   left: 0;
