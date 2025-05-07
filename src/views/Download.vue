@@ -6,8 +6,7 @@
       download="TongitsPinoy.apk"
       style="display: none"
       target="_blank"
-      >Download APK</a
-    >
+    ></a>
   </div>
 </template>
 
@@ -29,7 +28,8 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
-const downUrl = "/api/downApk";
+// const downUrl = "/api/downApk";
+const downUrl = import.meta.env.VITE_DOWN_OFFICIAL_APK;
 const downloadLink = ref(null);
 onMounted(() => {
   if (downloadLink.value) {
@@ -38,6 +38,6 @@ onMounted(() => {
   const router = useRouter();
   setTimeout(() => {
     router.push("/");
-  }, 6000);
+  }, 600);
 });
 </script>
