@@ -1,0 +1,28 @@
+
+export async function onRequest(context) {
+	const { request, env } = context;
+	// 处理 OPTIONS 预检
+	if (request.method === "OPTIONS") {
+		return new Response(null, {
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "POST, OPTIONS",
+				"Access-Control-Allow-Headers": "Content-Type",
+				"Access-Control-Max-Age": "86400", // 预检结果缓存24小时
+			},
+			status: 204,
+		});
+	}
+  // 目标文件的真实地址（需支持 HTTPS）
+  const fileUrl = 'https://res.tongitspinoy.com/TongitsPinoy.apk';
+
+  // 发起请求并返回文件流
+  const response = await fetch(fileUrl);
+  const modifiedResponse = new Response(response.body, response);
+
+  // 设置正确的 MIME 类型和下载头（关键！）
+  modifiedResponse.headers.set('Content-Type', 'application/vnd.android.package-archive');
+  modifiedResponse.headers.set('Content-Disposition', 'attachment; filename="app.apk"');
+
+  return modifiedResponse;
+}

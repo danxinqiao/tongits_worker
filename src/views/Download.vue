@@ -14,7 +14,7 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
-const downUrl = import.meta.env.VITE_DOWN_OFFICIAL_APK;
+const downUrl = "/api/dwonApk";
 const downloadLink = ref(null);
 onMounted(() => {
   if (downloadLink.value) {
