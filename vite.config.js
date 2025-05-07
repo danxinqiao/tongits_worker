@@ -12,9 +12,6 @@ export default defineConfig({
       }
     }
   ],
-  esbuild: {
-    sourceType: "module",
-  },
   build: {
     // 压缩配置
     minify: 'terser',
