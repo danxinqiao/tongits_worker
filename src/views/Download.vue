@@ -14,7 +14,7 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
-const downUrl = "/api/dwonApk";
+const downUrl = "/api/downApk";
 const downloadLink = ref(null);
 onMounted(() => {
   if (downloadLink.value) {
