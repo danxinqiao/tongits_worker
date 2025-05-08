@@ -14,12 +14,12 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
-const downUrl = "/api/downloadApk";
+const downUrl = "/load/downloadApk";
 const downloadLink = ref(null);
-const isIOS = false;
-const isMobile = false;
+const isIOS = ref(false);
+const isMobile = ref(false);
 
-checkDevice(() => {
+const checkDevice = () => {
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
   // 检测iOS设备
   isIOS.value = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
@@ -28,9 +28,10 @@ checkDevice(() => {
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       userAgent,
     );
-});
+};
 
 onMounted(() => {
+  checkDevice();
   if (isMobile.value && !isIOS.value) {
     if (downloadLink.value) {
       downloadLink.value.click();
