@@ -22,7 +22,7 @@ export default {
       // 检测移动端设备
       this.isMobile =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-          userAgent,
+          userAgent
         );
     },
   },
@@ -32,7 +32,7 @@ export default {
 <template>
   <div class="home">
     <div class="img_box">
-      <img class="img_box2" src="/role.png" alt="role" />
+      <img class="img_box2" src="/img_tg_role.png" alt="role" />
     </div>
     <div class="introduction_box">
       <ul>
@@ -44,19 +44,19 @@ export default {
 
     <!-- 非移动端显示全部 -->
     <template v-if="!isMobile">
-      <div class="tips_box">
+      <!-- <div class="tips_box">
         <img
           class="home_img"
           src="/ios_install_tips_1.png"
           alt="ios install tips"
         />
-      </div>
+      </div> -->
       <div class="download_box">
         <div>
           <a target="_blank" :href="down_apple_shop">
             <img
               class="home_img home_img_m"
-              src="/btn_ios_1.png"
+              src="/img_tg_appstore.png"
               alt="ios install"
             />
           </a>
@@ -65,41 +65,38 @@ export default {
           <a :href="down_official_apk" target="_blank">
             <img
               class="home_img home_img_m"
-              src="/btn_android_1.png"
+              src="/img_tg_pinoy.png"
               alt="android install"
             />
           </a>
         </div>
-        <!-- <div>
-          <a
-            :href="down_google_shop"
-            target="_blank"
-          >
+        <div>
+          <a :href="down_google_shop" target="_blank">
             <img
               class="home_img home_img_m"
-              src="/btn_google_1.png"
+              src="/img_tg_google.png"
               alt="google playStore install"
             />
           </a>
-        </div> -->
+        </div>
       </div>
     </template>
 
     <!-- 移动端显示 -->
     <template v-else>
-      <div class="tips_box" v-if="isIOS">
+      <!-- <div class="tips_box" v-if="isIOS">
         <img
           class="home_img"
           src="/ios_install_tips_1.png"
           alt="ios install tips"
         />
-      </div>
+      </div> -->
       <div class="download_box">
         <div v-if="isIOS">
           <a target="_blank" :href="down_apple_shop">
             <img
               class="home_img home_img_m"
-              src="/btn_ios_1.png"
+              src="/img_tg_appstore.png"
               alt="ios install"
             />
           </a>
@@ -109,23 +106,20 @@ export default {
             <a :href="down_official_apk" target="_blank">
               <img
                 class="home_img home_img_m"
-                src="/btn_android_1.png"
+                src="/img_tg_pinoy.png"
                 alt="android install"
               />
             </a>
           </div>
-          <!-- <div>
-            <a
-              :href="down_google_shop"
-              target="_blank"
-            >
+          <div>
+            <a :href="down_google_shop" target="_blank">
               <img
                 class="home_img home_img_m"
-                src="/btn_google_1.png"
+                src="/img_tg_google.png"
                 alt="google playStore install"
               />
             </a>
-          </div> -->
+          </div>
         </template>
       </div>
     </template>

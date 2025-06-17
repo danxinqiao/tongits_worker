@@ -9,17 +9,15 @@ export default {
     <div class="header">
       <div class="header-content">
         <router-link to="home">
-          <img src="/logo.png" width="82" height="39" alt="logo" class="logo" />
+          <img src="/img_tg.png" alt="tg" />
         </router-link>
         <img src="/cutLine.png" width="1.5" height="35.5" class="divider" />
         <router-link to="home">
-          <img
-            src="/logo2.png"
-            width="82"
-            height="39"
-            alt="logo"
-            class="logo"
-          />
+          <img src="/img_mania.png" alt="mania" />
+        </router-link>
+        <img src="/cutLine.png" width="1.5" height="35.5" class="divider" />
+        <router-link to="home">
+          <img src="/img_maniapro.png" alt="maniapro" />
         </router-link>
       </div>
     </div>
@@ -43,20 +41,24 @@ export default {
 .header-content {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
-  justify-content: center;
-  flex-wrap: wrap;
+  height: 40px;
 }
 
-.logo {
-  vertical-align: middle;
+.header-content img {
+  height: 52px; /* 固定高度 */
+  width: auto; /* 宽度自动保持比例 */
+  object-fit: contain; /* 等比例缩放 */
+  display: block; /* 消除图片底部间隙 */
 }
 
-.divider {
-  margin: 0 10px;
+.header-content .divider {
+  height: 35.5px; /* 保持原有设计高度 */
+  margin: auto 0; /* 垂直居中 */
 }
 
 .banner {
@@ -110,12 +112,39 @@ export default {
 @media (max-width: 768px) {
   .header-content {
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* 强制不换行 */
+    overflow: hidden; /* 隐藏溢出内容 */
+    gap: 15px; /* 缩小间距 */
+    padding: 0 10px;
+    height: 40px; /* 保持与PC端一致的高度 */
   }
 
-  .banner {
-    font-size: 12px;
-    padding: 6px 10px;
+  /* 图片响应式处理 */
+  .header-content img {
+    height: 100%; /* 继承容器高度 */
+    width: auto;
+    max-width: 80px; /* 设置最大宽度 */
+    transform: scale(0.9); /* 默认缩放 */
+    transform-origin: center;
+    transition: transform 0.3s;
   }
+
+  /* 自动缩小逻辑 */
+  @media (max-width: 400px) {
+    /* 超小屏幕额外处理 */
+    .header-content {
+      gap: 8px;
+    }
+    .header-content img {
+      max-width: 70px;
+      transform: scale(0.85);
+    }
+    .divider {
+      height: 30px !important;
+    }
+  }
+
+  /* 通过JavaScript检测容器宽度动态调整(可选) */
+  /* 需要配合ResizeObserver API */
 }
 </style>

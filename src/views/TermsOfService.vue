@@ -367,10 +367,6 @@ export default {
       transportation, facilities, fuel, energy, labor or material shortages
       caused by changes or problems, we shall not be responsible for.
     </p>
-    <p>
-      This terms is signed in FLAT/RM A 12/F KIU FU COMM BLDG 300 LOCKHART RD
-      WAN CHAI HONG KONG.
-    </p>
   </div>
 </template>
 

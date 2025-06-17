@@ -9,7 +9,7 @@ const route = useRoute();
 //根据route.meta.showHeaderFooter决定main的padding-top
 const computedStyle = computed(() => {
   return {
-    paddingTop: route.meta.showHeaderFooter ? "80px" : "0px",
+    paddingTop: route.meta.showHeaderFooter ? "95px" : "0px",
   };
 });
 </script>
@@ -35,7 +35,7 @@ const computedStyle = computed(() => {
   flex: 1;
   overflow-y: auto;
   /* 根据 Header 的实际高度调整 padding-top */
-  padding-top: 80px;
+  padding-top: 95px;
 }
 
 /* 固定 Header 的样式 */

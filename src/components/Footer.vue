@@ -20,7 +20,7 @@ export default {
       <div class="cp footer_fb">
         <img alt="facebook" height="20" src="/fb.png" width="19.5" />
         <a href="https://www.facebook.com/TongitsPinoyOfficial"
-        >@TongitsPinoyOfficial</a
+          >@TongitsPinoyOfficial</a
         >
       </div>
     </div>
@@ -63,6 +63,4 @@ export default {
   text-decoration: underline;
   font-size: 14px;
 }
-
-
 </style>
