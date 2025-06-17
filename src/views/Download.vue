@@ -26,7 +26,7 @@ const checkDevice = () => {
   // 检测移动端设备
   isMobile.value =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      userAgent,
+      userAgent
     );
 };
 

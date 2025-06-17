@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 export default {
   methods: {},
 };
@@ -25,4 +25,4 @@ export default {
     width: 750px;
   }
 }
-</style>
+</style> -->
