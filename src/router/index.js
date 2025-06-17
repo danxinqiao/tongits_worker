@@ -59,12 +59,12 @@ const router = createRouter({
       component: () => import("../views/Download.vue"),
       meta: { showHeaderFooter: true },
     },
-    {
-      path: "/iosGuidance",
-      name: "iosGuidance",
-      component: () => import("../views/IosGuidance.vue"),
-      meta: { showHeaderFooter: true },
-    },
+    // {
+    //   path: "/iosGuidance",
+    //   name: "iosGuidance",
+    //   component: () => import("../views/IosGuidance.vue"),
+    //   meta: { showHeaderFooter: true },
+    // },
     {
       path: "/playerShare",
       name: "playerShare",
