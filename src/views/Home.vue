@@ -55,7 +55,7 @@ export default {
         <div>
           <a target="_blank" :href="down_apple_shop">
             <img
-              class="home_img home_img_m"
+              class="home_img"
               src="/img_tg_appstore.png"
               alt="ios install"
             />
@@ -64,7 +64,7 @@ export default {
         <div>
           <a :href="down_official_apk" target="_blank">
             <img
-              class="home_img home_img_m"
+              class="home_img"
               src="/img_tg_pinoy.png"
               alt="android install"
             />
@@ -73,7 +73,7 @@ export default {
         <div>
           <a :href="down_google_shop" target="_blank">
             <img
-              class="home_img home_img_m"
+              class="home_img"
               src="/img_tg_google.png"
               alt="google playStore install"
             />
@@ -95,7 +95,7 @@ export default {
         <div v-if="isIOS">
           <a target="_blank" :href="down_apple_shop">
             <img
-              class="home_img home_img_m"
+              class="home_img_m"
               src="/img_tg_appstore.png"
               alt="ios install"
             />
@@ -105,7 +105,7 @@ export default {
           <div>
             <a :href="down_official_apk" target="_blank">
               <img
-                class="home_img home_img_m"
+                class="home_img_m"
                 src="/img_tg_pinoy.png"
                 alt="android install"
               />
@@ -114,7 +114,7 @@ export default {
           <div>
             <a :href="down_google_shop" target="_blank">
               <img
-                class="home_img home_img_m"
+                class="home_img_m"
                 src="/img_tg_google.png"
                 alt="google playStore install"
               />
@@ -139,10 +139,13 @@ export default {
 
 .home_img {
   object-fit: contain;
-  max-width: 50%;
+  max-width: 16%;
+  margin: 0 auto 18px auto;
 }
 
 .home_img_m {
+  object-fit: contain;
+  max-width: 50%;
   margin: 0 auto 18px auto;
 }
 
@@ -174,8 +177,14 @@ export default {
 }
 
 @media (min-width: 768px) {
+  .home_img_m {
+    width: 45%;
+  }
+}
+
+@media (min-width: 1200px) {
   .home_img {
-    width: 15%;
+    width: 45%;
   }
 }
 </style>
