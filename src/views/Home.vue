@@ -62,20 +62,20 @@ export default {
           </a>
         </div>
         <div>
-          <a :href="down_official_apk" target="_blank">
-            <img
-              class="home_img"
-              src="/img_tg_pinoy.png"
-              alt="android install"
-            />
-          </a>
-        </div>
-        <div>
           <a :href="down_google_shop" target="_blank">
             <img
               class="home_img"
               src="/img_tg_google.png"
               alt="google playStore install"
+            />
+          </a>
+        </div>
+        <div>
+          <a :href="down_official_apk" target="_blank">
+            <img
+              class="home_img"
+              src="/img_tg_pinoy.png"
+              alt="android install"
             />
           </a>
         </div>
@@ -103,20 +103,20 @@ export default {
         </div>
         <template v-if="!isIOS">
           <div>
-            <a :href="down_official_apk" target="_blank">
-              <img
-                class="home_img_m"
-                src="/img_tg_pinoy.png"
-                alt="android install"
-              />
-            </a>
-          </div>
-          <div>
             <a :href="down_google_shop" target="_blank">
               <img
                 class="home_img_m"
                 src="/img_tg_google.png"
                 alt="google playStore install"
+              />
+            </a>
+          </div>
+          <div>
+            <a :href="down_official_apk" target="_blank">
+              <img
+                class="home_img_m"
+                src="/img_tg_pinoy.png"
+                alt="android install"
               />
             </a>
           </div>

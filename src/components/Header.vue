@@ -46,12 +46,13 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
-  height: 40px;
+  height: 55px;
 }
 
 .header-content img {
-  height: 52px; /* 固定高度 */
-  width: auto; /* 宽度自动保持比例 */
+  height: 60px; /* 固定高度 */
+  /* width: auto; */
+  max-width: 120px;
   object-fit: contain; /* 等比例缩放 */
   display: block; /* 消除图片底部间隙 */
 }
@@ -122,9 +123,9 @@ export default {
   /* 图片响应式处理 */
   .header-content img {
     height: 100%; /* 继承容器高度 */
-    width: auto;
-    max-width: 80px; /* 设置最大宽度 */
-    transform: scale(0.9); /* 默认缩放 */
+    /* width: auto; */
+    max-width: 100px; /* 设置最大宽度 */
+    transform: scale(1); /* 默认缩放 */
     transform-origin: center;
     transition: transform 0.3s;
   }
@@ -137,7 +138,7 @@ export default {
     }
     .header-content img {
       max-width: 70px;
-      transform: scale(0.85);
+      transform: scale(1);
     }
     .divider {
       height: 30px !important;
