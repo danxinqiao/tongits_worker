@@ -198,7 +198,7 @@ export default {
 }
 .padding_container p {
   color: white;
-  text-align: justify;
+  text-align: left;
   text-justify: newspaper;
 }
 </style>
