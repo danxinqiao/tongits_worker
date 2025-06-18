@@ -177,12 +177,12 @@ const onWeekApp = () => {
   let scene = sScene.value;
 
   let schema = `com.tongits.playpinoy://tongitspinoy?token=${encodeURIComponent(
-    token,
+    token
   )}&scene=${scene}`;
   let shouldUseComplexSchema = false;
 
   const androidChromeMatch = navigator.userAgent.match(
-    /android\s.+chrome\/(\d+)/i,
+    /android\s.+chrome\/(\d+)/i
   );
   if (androidChromeMatch) {
     const version = parseInt(androidChromeMatch[1]);
@@ -197,9 +197,9 @@ const onWeekApp = () => {
     showDialog({ message: "Please use the viewer to open." });
   } else if (shouldUseComplexSchema) {
     schema = `intent://tongitspinoy?token=${encodeURIComponent(
-      token,
+      token
     )}&scene=${scene}#Intent;scheme=com.tongits.playpinoy;package=com.tongits.playpinoy;S.browser_fallback_url=${encodeURIComponent(
-      "https://www.tongitspinoy.com/",
+      "https://www.tongitspinoy.com/"
     )};end`;
     location.href = schema;
     setTimeout(goToDownload, 600);

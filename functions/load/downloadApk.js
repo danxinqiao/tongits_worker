@@ -15,6 +15,11 @@ export async function onRequest(context) {
   }
   // 目标文件的真实地址（需支持 HTTPS）
   const fileUrl = "https://res.tongitspinoy.com/TongitsPinoy.apk";
+
+  // 发起请求并返回文件流
+  const response = await fetch(fileUrl);
+  const modifiedResponse = new Response(response.body, response);
+
   const origin = request.headers.get("Origin");
   modifiedResponse.headers.set("Access-Control-Allow-Origin", origin);
   modifiedResponse.headers.set(
