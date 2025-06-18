@@ -16,11 +16,11 @@ const computedStyle = computed(() => {
 
 <template>
   <div class="main-container">
-    <Header v-if="route.meta.showHeaderFooter" class="fixed-header" />
+    <Header class="fixed-header" />
     <main class="content-wrapper" :style="computedStyle">
       <RouterView />
     </main>
-    <Footer v-if="route.meta.showHeaderFooter" />
+    <Footer />
   </div>
 </template>
 
