@@ -21,7 +21,7 @@ export default {
       </div>
       <div class="cp footer_fb">
         <img alt="facebook" height="20" src="/fb.png" width="19.5" />
-        <a href="https://www.facebook.com/TongitsManiaOfficial/"
+        <a href="https://www.facebook.com/TongitsPinoyOfficial/"
           >@TongitsPinoyOfficial</a
         >
       </div>
