@@ -16,10 +16,12 @@ export default {
         <router-link to="refundPolicy">Refund Policy</router-link> |
         <router-link to="contactUs">Contact Us</router-link>
       </div>
-      <div class="cp">©{{ new Date().getFullYear() }} Tongits Pinoy</div>
+      <div class="cp footer_font">
+        © TongitsPinoy {{ new Date().getFullYear() }} All Rights Reserved
+      </div>
       <div class="cp footer_fb">
         <img alt="facebook" height="20" src="/fb.png" width="19.5" />
-        <a href="https://www.facebook.com/TongitsPinoyOfficial"
+        <a href="https://www.facebook.com/TongitsManiaOfficial/"
           >@TongitsPinoyOfficial</a
         >
       </div>
