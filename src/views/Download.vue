@@ -23,7 +23,6 @@ const checkDevice = () => {
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
   // 检测iOS设备
   isIOS.value = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-  // 检测移动端设备
   isMobile.value =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       userAgent
