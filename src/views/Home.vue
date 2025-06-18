@@ -44,13 +44,13 @@ export default {
 
     <!-- 非移动端显示全部 -->
     <template v-if="!isMobile">
-      <!-- <div class="tips_box">
+      <div class="tips_box">
         <img
-          class="home_img"
+          class="home_tips_img"
           src="/ios_install_tips_1.png"
           alt="ios install tips"
         />
-      </div> -->
+      </div>
       <div class="download_box">
         <div>
           <a target="_blank" :href="down_apple_shop">
@@ -84,13 +84,13 @@ export default {
 
     <!-- 移动端显示 -->
     <template v-else>
-      <!-- <div class="tips_box" v-if="isIOS">
+      <div class="tips_box" v-if="isIOS">
         <img
-          class="home_img"
+          class="home_tips_img_m"
           src="/ios_install_tips_1.png"
           alt="ios install tips"
         />
-      </div> -->
+      </div>
       <div class="download_box">
         <div v-if="isIOS">
           <a target="_blank" :href="down_apple_shop">
@@ -132,6 +132,12 @@ export default {
   margin: 15px auto 0 auto;
 }
 
+.home_tips_img {
+  object-fit: contain;
+  max-width: 16%;
+  margin: 0 auto -12px auto;
+}
+
 .img_box2 {
   object-fit: contain;
   max-width: 60%;
@@ -147,6 +153,12 @@ export default {
   object-fit: contain;
   max-width: 50%;
   margin: 0 auto 18px auto;
+}
+
+.home_tips_img_m {
+  object-fit: contain;
+  max-width: 50%;
+  margin: 0 auto -6px auto;
 }
 
 .introduction_box {
