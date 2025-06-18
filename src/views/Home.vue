@@ -127,6 +127,11 @@ export default {
 </template>
 
 <style scoped>
+.home {
+  margin-left: 3vh;
+  margin-right: 3vh;
+}
+
 .img_box {
   text-align: center;
   margin: 15px auto 0 auto;
