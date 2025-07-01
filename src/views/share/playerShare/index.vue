@@ -201,7 +201,7 @@ const onWeekApp = () => {
     // )}&scene=${scene}#Intent;scheme=com.tongits.playpinoy;package=com.tongits.playpinoy;S.browser_fallback_url=${encodeURIComponent(
     //   "https://www.tongitspinoy.com/",
     //   )};end`;
-    schema = `intent://tongitspinoy#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent("https://www.tongitspinoy.com")};end`;
+    schema = `intent://tongitspinoy#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent("https://www.tongitspinoy.com")};end`;
     // console.log("=========", schema);
 
     location.href = schema;
