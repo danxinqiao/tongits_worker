@@ -28,7 +28,7 @@
             alt="btn_open"
             style="width: 32%; padding-left: 1%"
           />
-          <img
+          <!-- <img
             src="/images/playerShare/loading_android.png"
             alt="loading_android"
             style="
@@ -37,7 +37,7 @@
               margin-left: auto;
               height: 10%;
             "
-          />
+          /> -->
         </div>
         <div
           style="
@@ -52,7 +52,7 @@
             alt="btn_open"
             style="width: 33%; padding-left: 1%"
           />
-          <img
+          <!-- <img
             src="/images/playerShare/loading_ios.png"
             alt="loading_android"
             style="
@@ -60,7 +60,7 @@
               padding-right: 3%;
               margin-left: auto;
               height: 10%;
-            "
+            " -->
           />
         </div>
       </van-button>
@@ -126,10 +126,10 @@ const deviceType = computed(() => {
 });
 
 const onOpenThisPage = () => {
-  sToken.value = route.query.token;
-  sShowInfo.value = route.query.showInfo;
-  sScene.value = route.query.scene;
-  sInviteCode.value = route.query.invite;
+  sToken.value = route.query.token ?? "";
+  sShowInfo.value = route.query.showInfo ?? "";
+  sScene.value = route.query.scene ?? "";
+  sInviteCode.value = route.query.invite ?? "";
   if (sInviteCode.value) {
     sInviteCode.value = sInviteCode.value.replace(/ /g, "+");
     sInviteCode.value = AesManager.decrypt(sInviteCode.value);
@@ -177,12 +177,12 @@ const onWeekApp = () => {
   let scene = sScene.value;
 
   let schema = `com.tongits.playpinoy://tongitspinoy?token=${encodeURIComponent(
-    token
+    token,
   )}&scene=${scene}`;
   let shouldUseComplexSchema = false;
 
   const androidChromeMatch = navigator.userAgent.match(
-    /android\s.+chrome\/(\d+)/i
+    /android\s.+chrome\/(\d+)/i,
   );
   if (androidChromeMatch) {
     const version = parseInt(androidChromeMatch[1]);
@@ -196,11 +196,14 @@ const onWeekApp = () => {
     // 微信、qq、百度游览器等，不能进行唤醒
     showDialog({ message: "Please use the viewer to open." });
   } else if (shouldUseComplexSchema) {
-    schema = `intent://tongitspinoy?token=${encodeURIComponent(
-      token
-    )}&scene=${scene}#Intent;scheme=com.tongits.playpinoy;package=com.tongits.playpinoy;S.browser_fallback_url=${encodeURIComponent(
-      "https://www.tongitspinoy.com/"
-    )};end`;
+    // schema = `intent://tongitspinoy?token=${encodeURIComponent(
+    //   token,
+    // )}&scene=${scene}#Intent;scheme=com.tongits.playpinoy;package=com.tongits.playpinoy;S.browser_fallback_url=${encodeURIComponent(
+    //   "https://www.tongitspinoy.com/",
+    //   )};end`;
+    schema = `intent://tongitspinoy#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent("https://www.tongitspinoy.com")};end`;
+    // console.log("=========", schema);
+
     location.href = schema;
     setTimeout(goToDownload, 600);
   } else {
