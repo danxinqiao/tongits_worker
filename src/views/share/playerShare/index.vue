@@ -196,14 +196,11 @@ const onWeekApp = () => {
     // 微信、qq、百度游览器等，不能进行唤醒
     showDialog({ message: "Please use the viewer to open." });
   } else if (shouldUseComplexSchema) {
-    // schema = `intent://tongitspinoy?token=${encodeURIComponent(
-    //   token,
-    // )}&scene=${scene}#Intent;scheme=com.tongits.playpinoy;package=com.tongits.playpinoy;S.browser_fallback_url=${encodeURIComponent(
-    //   "https://www.tongitspinoy.com/",
-    //   )};end`;
-    schema = `intent://tongitspinoy#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent("https://www.tongitspinoy.com")};end`;
-    // console.log("=========", schema);
-
+    schema = `intent://tongitspinoy?token=${encodeURIComponent(
+      token,
+    )}&scene=${scene}#Intent;scheme=com.tongits.playpinoy;package=com.tongits.playpinoy;S.browser_fallback_url=${encodeURIComponent(
+      "https://www.tongitspinoy.com/",
+    )};end`;
     location.href = schema;
     setTimeout(goToDownload, 600);
   } else {
