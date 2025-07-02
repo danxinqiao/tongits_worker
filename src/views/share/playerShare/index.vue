@@ -176,7 +176,7 @@ const onWeekApp = () => {
   let token = sToken.value;
   let scene = sScene.value;
 
-  let schema = `com.tongits.playpinoy://tongitspinoy?token=${encodeURIComponent(
+  let schema = `com.protechmania.maxfun://protechmania?token=${encodeURIComponent(
     token,
   )}&scene=${scene}`;
   let shouldUseComplexSchema = false;
@@ -196,9 +196,9 @@ const onWeekApp = () => {
     // 微信、qq、百度游览器等，不能进行唤醒
     showDialog({ message: "Please use the viewer to open." });
   } else if (shouldUseComplexSchema) {
-    schema = `intent://tongitspinoy?token=${encodeURIComponent(
+    schema = `intent://protechmania?token=${encodeURIComponent(
       token,
-    )}&scene=${scene}#Intent;scheme=com.tongits.playpinoy;package=com.tongits.playpinoy;S.browser_fallback_url=${encodeURIComponent(
+    )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(
       "https://www.tongitspinoy.com/",
     )};end`;
     location.href = schema;
