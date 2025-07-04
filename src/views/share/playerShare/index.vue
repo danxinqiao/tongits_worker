@@ -189,6 +189,7 @@ const onWeekApp = () => {
     if (version >= 25) {
       // android chrome 25 or later requires more complex schema
       shouldUseComplexSchema = true;
+      9;
     }
   }
 
