@@ -167,6 +167,7 @@ const goToDownload = () => {
   if (isFacebookApp()) {
     var button = document.getElementById("test");
     button.click();
+    alert(button);
   } else {
     if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
       location.href = fallbackUrl; // 'https://apps.apple.com/us/app/id1507313633'
