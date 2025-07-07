@@ -217,12 +217,12 @@ const onWeekApp = () => {
     showDialog({ message: "Please use the viewer to open." });
   } else if (shouldUseComplexSchema) {
     try {
-      schema = `intent://protechmania?token=${encodeURIComponent(
-        token,
-      )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(
-        window.location.origin + "/",
-      )};end`;
-      location.href = schema;
+      // schema = `intent://protechmania?token=${encodeURIComponent(
+      //   token,
+      // )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(
+      //   window.location.origin + "/",
+      // )};end`;
+      // location.href = schema;
       setTimeout(goToDownload, 600);
     } catch (e) {
       alert(e);
