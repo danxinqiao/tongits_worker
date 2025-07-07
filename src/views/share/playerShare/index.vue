@@ -218,7 +218,8 @@ const onWeekApp = () => {
         token,
       )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent("https://tongits-worker.pages.dev")};end`;
       location.href = schema;
-      setTimeout(goToDownload, 600);
+      // setTimeout(goToDownload, 600);
+      goToDownload();
     } catch (e) {
       alert(e);
       goToDownload();
