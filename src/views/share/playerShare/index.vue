@@ -90,9 +90,9 @@
         />
       </van-button>
     </div>
-    <button onclick="redirectTo('https://tongits-worker.pages.dev/home')">
-      点击跳转到example.com
-    </button>
+    <van-button @click="redirectTo('https://tongits-worker.pages.dev/home')">
+      test111111111
+    </van-button>
   </div>
 </template>
 
@@ -123,6 +123,7 @@ onMounted(() => {
 
 const redirectTo = (url) => {
   window.top.location.href = url;
+  showDialog({ message: url });
 };
 
 //判断设备类型是不是安卓，android:true ios:false
