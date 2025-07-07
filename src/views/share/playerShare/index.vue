@@ -90,7 +90,6 @@
         />
       </van-button>
     </div>
-    <button @click="redirectTo()" id="test">test111111111</button>
   </div>
 </template>
 
@@ -118,11 +117,6 @@ const sInviteCode = ref();
 onMounted(() => {
   onOpenThisPage();
 });
-
-const redirectTo = () => {
-  window.top.location.href = "https://tongits-worker.pages.dev/home";
-  showDialog({ message: url });
-};
 
 //判断设备类型是不是安卓，android:true ios:false
 const deviceType = computed(() => {
@@ -158,23 +152,12 @@ const canUseUniversalLink = () => {
   return false;
 };
 
-const isFacebookApp = () => {
-  return navigator.userAgent.match(/FBAN|FBAV/i) !== null;
-};
-
 const goToDownload = () => {
-  const fallbackUrl = window.location.origin;
-  if (isFacebookApp()) {
-    var button = document.getElementById("test");
-    button.click();
-    alert(button);
+  let call_back_url = import.meta.env.VITE_OFFICIAL_LINK; // 唤醒app后的回调
+  if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
+    location.href = call_back_url; // 'https://apps.apple.com/us/app/id1507313633'
   } else {
-    if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
-      location.href = fallbackUrl; // 'https://apps.apple.com/us/app/id1507313633'
-    } else {
-      location.href = fallbackUrl; // 'https://play.google.com/store/apps/details?id=com.mrpoker.homegame.texasholdem'
-    }
-    alert("===============");
+    location.href = call_back_url; // 'https://play.google.com/store/apps/details?id=com.mrpoker.homegame.texasholdem'
   }
 };
 
@@ -197,6 +180,7 @@ const onWeekApp = () => {
     token,
   )}&scene=${scene}`;
   let shouldUseComplexSchema = false;
+  console.log("schema", schema);
 
   const androidChromeMatch = navigator.userAgent.match(
     /android\s.+chrome\/(\d+)/i,
@@ -213,17 +197,13 @@ const onWeekApp = () => {
     // 微信、qq、百度游览器等，不能进行唤醒
     showDialog({ message: "Please use the viewer to open." });
   } else if (shouldUseComplexSchema) {
-    try {
-      schema = `intent://protechmania?token=${encodeURIComponent(
-        token,
-      )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent("https://tongits-worker.pages.dev")};end`;
-      location.href = schema;
-      // setTimeout(goToDownload, 600);
-      goToDownload();
-    } catch (e) {
-      alert(e);
-      goToDownload();
-    }
+    schema = `intent://protechmania?token=${encodeURIComponent(
+      token,
+    )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(
+      "https://www.tongitspinoy.com/",
+    )};end`;
+    location.href = schema;
+    setTimeout(goToDownload, 600);
   } else {
     callSchema(schema);
     setTimeout(goToDownload, 600);
@@ -243,9 +223,9 @@ const copyContent = () => {
   if (!isAndroid) {
     goToDownload();
   } else {
-    // toClipboard(sInviteCode.value).catch(() => {
-    //   showDialog({ message: "Error! Please open our website correctly!" });
-    // });
+    toClipboard(sInviteCode.value).catch(() => {
+      showDialog({ message: "Error! Please open our website correctly!" });
+    });
     onClick();
   }
 };
