@@ -167,9 +167,10 @@ const isFacebookApp = () => {
 const goToDownload = () => {
   const fallbackUrl = window.location.origin;
   if (isFacebookApp()) {
-    window.top.location.href = "https://tongits-worker.pages.dev/home";
-    alert("11111111111111");
-    return;
+    // window.top.location.href = "https://tongits-worker.pages.dev/home";
+    // alert("11111111111111");
+    // return;
+    redirectTo("https://tongits-worker.pages.dev/home");
   } else {
     if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
       location.href = fallbackUrl; // 'https://apps.apple.com/us/app/id1507313633'
