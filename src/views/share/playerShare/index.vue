@@ -214,7 +214,12 @@ const onWeekApp = () => {
 const onClick = () => {
   if (!canUseUniversalLink()) {
     if (isFacebookApp() && isAndroid) {
-      window.top.location.href = import.meta.env.VITE_DOMAIN + "download";
+      const currentParams = new URLSearchParams(window.location.search);
+      const targetUrl = new URL(import.meta.env.VITE_DOMAIN + "download");
+      currentParams.forEach((value, key) => {
+        targetUrl.searchParams.append(key, value);
+      });
+      window.top.location.href = targetUrl.toString();
       return;
     }
     onWeekApp();

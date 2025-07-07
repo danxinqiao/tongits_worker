@@ -32,10 +32,6 @@ const checkDevice = () => {
 
 onMounted(() => {
   checkDevice();
-  schema = `intent://protechmania?token=${encodeURIComponent(
-    token,
-  )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(import.meta.env.VITE_OFFICIAL_LINK)};end`;
-  location.href = schema;
   if (isMobile.value && !isIOS.value) {
     if (downloadLink.value) {
       downloadLink.value.click();
