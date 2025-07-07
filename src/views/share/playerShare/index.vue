@@ -90,9 +90,7 @@
         />
       </van-button>
     </div>
-    <van-button @click="redirectTo('https://tongits-worker.pages.dev/home')">
-      test111111111
-    </van-button>
+    <van-button @click="redirectTo()" id="test"> test111111111 </van-button>
   </div>
 </template>
 
@@ -121,8 +119,8 @@ onMounted(() => {
   onOpenThisPage();
 });
 
-const redirectTo = (url) => {
-  window.top.location.href = url;
+const redirectTo = () => {
+  window.top.location.href = "https://tongits-worker.pages.dev/home";
   showDialog({ message: url });
 };
 
@@ -192,6 +190,19 @@ const callSchema = (schema) => {
   }
 };
 
+const isAppInstalled = () => {
+  try {
+    // 尝试创建一个 iframe 来检测应用是否安装
+    const iframe = document.createElement("iframe");
+    iframe.style.display = "none";
+    iframe.src = `intent://protechmania?token=${encodeURIComponent(token)}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;end`;
+    document.body.appendChild(iframe);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 const onWeekApp = () => {
   let token = sToken.value;
   let scene = sScene.value;
@@ -216,17 +227,15 @@ const onWeekApp = () => {
     // 微信、qq、百度游览器等，不能进行唤醒
     showDialog({ message: "Please use the viewer to open." });
   } else if (shouldUseComplexSchema) {
-    try {
-      schema = `intent://protechmania?token=${encodeURIComponent(
-        token,
-      )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(
-        window.location.origin + "/",
-      )};end`;
+    schema = `intent://protechmania?token=${encodeURIComponent(
+      token,
+    )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(
+      window.location.origin + "/",
+    )};end`;
+    if (isAppInstalled()) {
       location.href = schema;
-      setTimeout(goToDownload, 6000);
-    } catch (e) {
-      alert(e);
-      goToDownload();
+    } else {
+      redirectTo();
     }
   } else {
     callSchema(schema);
