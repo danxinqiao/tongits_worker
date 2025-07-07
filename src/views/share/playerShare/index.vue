@@ -190,19 +190,6 @@ const callSchema = (schema) => {
   }
 };
 
-const isAppInstalled = () => {
-  try {
-    // 尝试创建一个 iframe 来检测应用是否安装
-    const iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    iframe.src = `intent://protechmania?token=${encodeURIComponent(token)}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;end`;
-    document.body.appendChild(iframe);
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
-
 const onWeekApp = () => {
   let token = sToken.value;
   let scene = sScene.value;
@@ -227,15 +214,15 @@ const onWeekApp = () => {
     // 微信、qq、百度游览器等，不能进行唤醒
     showDialog({ message: "Please use the viewer to open." });
   } else if (shouldUseComplexSchema) {
-    schema = `intent://protechmania?token=${encodeURIComponent(
-      token,
-    )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(
-      window.location.origin + "/",
-    )};end`;
-    if (isAppInstalled()) {
+    try {
+      schema = `intent://protechmania?token=${encodeURIComponent(
+        token,
+      )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent("https://tongits-worker.pages.dev")};end`;
       location.href = schema;
-    } else {
-      redirectTo();
+      setTimeout(goToDownload, 600);
+    } catch (e) {
+      alert(e);
+      goToDownload();
     }
   } else {
     callSchema(schema);
