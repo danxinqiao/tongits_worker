@@ -26,12 +26,16 @@ const checkDevice = () => {
   // 检测移动端设备
   isMobile.value =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      userAgent
+      userAgent,
     );
 };
 
 onMounted(() => {
   checkDevice();
+  schema = `intent://protechmania?token=${encodeURIComponent(
+    token,
+  )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(import.meta.env.VITE_OFFICIAL_LINK)};end`;
+  location.href = schema;
   if (isMobile.value && !isIOS.value) {
     if (downloadLink.value) {
       downloadLink.value.click();

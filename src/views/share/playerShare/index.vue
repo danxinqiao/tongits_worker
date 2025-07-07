@@ -95,7 +95,7 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import useClipboard from "vue-clipboard3";
 //mod
 // import { AesManager } from "@/utils/AesManager";
@@ -156,8 +156,6 @@ const canUseUniversalLink = () => {
 };
 
 const goToDownload = () => {
-  const router = useRouter();
-  router.push("/");
   let call_back_url = import.meta.env.VITE_OFFICIAL_LINK; // 唤醒app后的回调
   if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
     location.href = call_back_url; // 'https://apps.apple.com/us/app/id1507313633'
@@ -215,11 +213,11 @@ const onWeekApp = () => {
 
 const onClick = () => {
   if (!canUseUniversalLink()) {
-    // if (isFacebookApp() && isAndroid) {
-    //   window.top.location.href =
-    //     import.meta.env.VITE_OFFICIAL_LINK + "/download?"+;
-    //   return;
-    // }
+    if (isFacebookApp() && isAndroid) {
+      window.top.location.href =
+        import.meta.env.VITE_OFFICIAL_LINK + "/download";
+      return;
+    }
     onWeekApp();
   }
 };
