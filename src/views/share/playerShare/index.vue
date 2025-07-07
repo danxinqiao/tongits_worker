@@ -90,6 +90,9 @@
         />
       </van-button>
     </div>
+    <button onclick="redirectTo('https://tongits-worker.pages.dev/home')">
+      点击跳转到example.com
+    </button>
   </div>
 </template>
 
@@ -117,6 +120,10 @@ const sInviteCode = ref();
 onMounted(() => {
   onOpenThisPage();
 });
+
+const redirectTo = (url) => {
+  window.top.location.href = url;
+};
 
 //判断设备类型是不是安卓，android:true ios:false
 const deviceType = computed(() => {
