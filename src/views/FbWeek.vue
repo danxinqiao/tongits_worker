@@ -40,7 +40,7 @@ export default {
       }
       let schema = `intent://protechmania?token=${encodeURIComponent(
         sToken,
-      )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;end`;
+      )}&scene=${sScene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;end`;
       location.href = schema;
     },
   },
