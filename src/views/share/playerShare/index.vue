@@ -95,7 +95,7 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import useClipboard from "vue-clipboard3";
 //mod
 // import { AesManager } from "@/utils/AesManager";
@@ -117,6 +117,9 @@ const sInviteCode = ref();
 onMounted(() => {
   onOpenThisPage();
 });
+
+const isAndroid =
+  navigator.userAgent.match(/iphone|ipod|ipad|Android/i) == "Android";
 
 //判断设备类型是不是安卓，android:true ios:false
 const deviceType = computed(() => {
@@ -153,6 +156,8 @@ const canUseUniversalLink = () => {
 };
 
 const goToDownload = () => {
+  const router = useRouter();
+  router.push("/");
   let call_back_url = import.meta.env.VITE_OFFICIAL_LINK; // 唤醒app后的回调
   if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
     location.href = call_back_url; // 'https://apps.apple.com/us/app/id1507313633'
@@ -199,9 +204,7 @@ const onWeekApp = () => {
   } else if (shouldUseComplexSchema) {
     schema = `intent://protechmania?token=${encodeURIComponent(
       token,
-    )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(
-      "https://www.tongitspinoy.com/",
-    )};end`;
+    )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(import.meta.env.VITE_OFFICIAL_LINK)};end`;
     location.href = schema;
     setTimeout(goToDownload, 600);
   } else {
@@ -212,10 +215,11 @@ const onWeekApp = () => {
 
 const onClick = () => {
   if (!canUseUniversalLink()) {
-    if (isFacebookApp()) {
-      window.top.location.href = "https://tongits-worker.pages.dev/home";
-      return;
-    }
+    // if (isFacebookApp() && isAndroid) {
+    //   window.top.location.href =
+    //     import.meta.env.VITE_OFFICIAL_LINK + "/download?"+;
+    //   return;
+    // }
     onWeekApp();
   }
 };
@@ -226,14 +230,12 @@ const isFacebookApp = () => {
 
 const { toClipboard } = useClipboard();
 const copyContent = () => {
-  const isAndroid =
-    navigator.userAgent.match(/iphone|ipod|ipad|Android/i) == "Android";
   if (!isAndroid) {
     goToDownload();
   } else {
-    // toClipboard(sInviteCode.value).catch(() => {
-    //   showDialog({ message: "Error! Please open our website correctly!" });
-    // });
+    toClipboard(sInviteCode.value).catch(() => {
+      showDialog({ message: "Error! Please open our website correctly!" });
+    });
     onClick();
   }
 };
