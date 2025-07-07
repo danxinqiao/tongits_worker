@@ -230,9 +230,9 @@ const copyContent = () => {
   if (!isAndroid) {
     goToDownload();
   } else {
-    toClipboard(sInviteCode.value).catch(() => {
-      showDialog({ message: "Error! Please open our website correctly!" });
-    });
+    // toClipboard(sInviteCode.value).catch(() => {
+    //   showDialog({ message: "Error! Please open our website correctly!" });
+    // });
     onClick();
   }
 };
