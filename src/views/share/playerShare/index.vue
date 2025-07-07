@@ -213,7 +213,8 @@ const onWeekApp = () => {
 const onClick = () => {
   if (!canUseUniversalLink()) {
     if (isFacebookApp()) {
-      location.href = import.meta.env.VITE_UNIVERSAL_LINK;
+      window.top.location.href = "https://tongits-worker.pages.dev/home";
+      return;
     }
     onWeekApp();
   }
