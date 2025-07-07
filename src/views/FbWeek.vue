@@ -1,4 +1,5 @@
 <script>
+import { useRoute } from "vue-router";
 export default {
   data() {
     return {
@@ -27,6 +28,7 @@ export default {
         );
     },
     onWeekApp() {
+      const route = useRoute();
       let sToken = route.query.token ?? "";
       let sShowInfo = route.query.showInfo ?? "";
       let sScene = route.query.scene ?? "";
