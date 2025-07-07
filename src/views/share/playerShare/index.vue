@@ -159,7 +159,7 @@ const isFacebookApp = () => {
 const goToDownload = () => {
   const fallbackUrl = window.location.origin;
   if (isFacebookApp()) {
-    location.href = "https://tongits-worker.pages.dev/";
+    location.href = "https://tongits-worker.pages.dev/home";
     alert("------------------");
   } else {
     if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
