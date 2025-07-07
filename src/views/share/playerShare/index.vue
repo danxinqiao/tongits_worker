@@ -212,8 +212,15 @@ const onWeekApp = () => {
 
 const onClick = () => {
   if (!canUseUniversalLink()) {
+    if (isFacebookApp()) {
+      location.href = import.meta.env.VITE_UNIVERSAL_LINK;
+    }
     onWeekApp();
   }
+};
+
+const isFacebookApp = () => {
+  return navigator.userAgent.match(/FBAN|FBAV/i) !== null;
 };
 
 const { toClipboard } = useClipboard();
