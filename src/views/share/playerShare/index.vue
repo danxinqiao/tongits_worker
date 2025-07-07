@@ -1,11 +1,15 @@
 <template>
   <div
     class="playerShare-scss"
-    style="display: flex; flex-direction: column; align-items: center"
+    style="
+      display: flex;
+      display: -webkit-flex;
+      flex-direction: column;
+      align-items: center;
+    "
   >
     <div style="margin-top: 2vh; width: 100%">
       <van-button
-        @click="openOrDownload"
         size="large"
         type="success"
         block
@@ -17,13 +21,23 @@
             justify-content: space-between;
             align-items: center;
           "
-          v-if="isAndroid"
+          v-if="deviceType"
         >
           <img
             src="/images/playerShare/logo_pinoy.png"
             alt="btn_open"
             style="width: 32%; padding-left: 1%"
           />
+          <!-- <img
+            src="/images/playerShare/loading_android.png"
+            alt="loading_android"
+            style="
+              width: 50%;
+              padding-right: 1%;
+              margin-left: auto;
+              height: 10%;
+            "
+          /> -->
         </div>
         <div
           style="
@@ -38,10 +52,21 @@
             alt="btn_open"
             style="width: 33%; padding-left: 1%"
           />
+          <!-- <img
+            src="/images/playerShare/loading_ios.png"
+            alt="loading_android"
+            style="
+              width: 36%;
+              padding-right: 3%;
+              margin-left: auto;
+              height: 10%;
+            " -->
+          />
         </div>
       </van-button>
     </div>
 
+    <!-- 跳转按钮 -->
     <div style="margin-top: 70vh; width: 50%">
       <van-button
         @click="copyContent"
@@ -69,103 +94,158 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import useClipboard from "vue-clipboard3";
+//mod
+// import { AesManager } from "@/utils/AesManager";
 import { showDialog } from "vant";
 import { AesManager } from "../../../utils/AesManager";
 
+//图片
+// import btn_open from "" //打开游戏按钮
+
+// ----------------------------------------------------------------------- 属性start
 const route = useRoute();
-const { toClipboard } = useClipboard();
 
-const sToken = ref("");
-const sScene = ref("");
-const sInviteCode = ref("");
+const sToken = ref();
+const sShowInfo = ref();
+const sScene = ref();
+const sInviteCode = ref();
+// ----------------------------------------------------------------------- 属性end
 
-const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-const isAndroid = /Android/i.test(navigator.userAgent);
+onMounted(() => {
+  onOpenThisPage();
+});
+
+//判断设备类型是不是安卓，android:true ios:false
+const deviceType = computed(() => {
+  const isAndroid =
+    navigator.userAgent.match(/iphone|ipod|ipad|Android/i) == "Android";
+  return isAndroid ? true : false;
+});
 
 const onOpenThisPage = () => {
-  const { token = "", scene = "", invite = "" } = route.query;
-  sToken.value = token;
-  sScene.value = scene;
-  if (invite) {
-    let code = invite.replace(/ /g, "+");
-    code = AesManager.decrypt(code);
-    sInviteCode.value = `-###${code}###-`;
+  sToken.value = route.query.token ?? "";
+  sShowInfo.value = route.query.showInfo ?? "";
+  sScene.value = route.query.scene ?? "";
+  sInviteCode.value = route.query.invite ?? "";
+  if (sInviteCode.value) {
+    sInviteCode.value = sInviteCode.value.replace(/ /g, "+");
+    sInviteCode.value = AesManager.decrypt(sInviteCode.value);
+    sInviteCode.value = "-###" + sInviteCode.value + "###-";
   }
 };
 
 const canUseUniversalLink = () => {
-  if (!isiOS) return false;
-  if (/micromessenger|facebook|baidubrowser/i.test(navigator.userAgent))
-    return false;
-  const match = navigator.userAgent.match(/ OS (\d+)_/i);
-  const version = match ? parseInt(match[1], 10) : 0;
-  return version >= 9;
+  let iOSMatch = navigator.userAgent.match(/iphone|ipod|ipad/i);
+  if (iOSMatch) {
+    if (navigator.userAgent.match(/micromessenger/i)) {
+      return false;
+    }
+    const versionMatch = navigator.userAgent.match(/ os (\d+)/i);
+    const v = parseInt(versionMatch[1]);
+    if (!isNaN(v) && v >= 9) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const isFacebookApp = () => {
+  return navigator.userAgent.match(/FBAN|FBAV/i) !== null;
 };
 
 const goToDownload = () => {
-  const url =
-    import.meta.env.VITE_OFFICIAL_LINK || "https://www.tongitspinoy.com/";
-  location.href = url;
+  const fallbackUrl = window.location.origin;
+  if (isFacebookApp()) {
+    location.href = "https://tongits-worker.pages.dev/";
+    alert("------------------");
+  } else {
+    if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
+      location.href = fallbackUrl; // 'https://apps.apple.com/us/app/id1507313633'
+    } else {
+      location.href = fallbackUrl; // 'https://play.google.com/store/apps/details?id=com.mrpoker.homegame.texasholdem'
+    }
+    alert("===============");
+  }
 };
 
 const callSchema = (schema) => {
-  if (isiOS) {
+  if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
     location.href = schema;
   } else {
-    const iframe = document.createElement("iframe");
-    iframe.style.display = "none";
+    let iframe = document.createElement("iframe");
+    iframe.className = "invisible-iframe";
     iframe.src = schema;
     document.body.appendChild(iframe);
   }
 };
 
-const openOrDownload = () => {
-  const token = sToken.value;
-  const scene = sScene.value;
+const onWeekApp = () => {
+  let token = sToken.value;
+  let scene = sScene.value;
 
-  if (/micromessenger|facebook|baidubrowser/i.test(navigator.userAgent)) {
-    showDialog({
-      message: "Please open in your browser or download our app.",
-    }).then(goToDownload);
-    return;
+  let schema = `com.protechmania.maxfun://protechmania?token=${encodeURIComponent(
+    token,
+  )}&scene=${scene}`;
+  let shouldUseComplexSchema = false;
+
+  const androidChromeMatch = navigator.userAgent.match(
+    /android\s.+chrome\/(\d+)/i,
+  );
+  if (androidChromeMatch) {
+    const version = parseInt(androidChromeMatch[1]);
+    if (version >= 25) {
+      // android chrome 25 or later requires more complex schema
+      shouldUseComplexSchema = true;
+    }
   }
 
-  if (canUseUniversalLink()) {
-    location.href =
-      import.meta.env.VITE_UNIVERSAL_LINK || "https://www.tongitspinoy.com/";
-  } else {
-    const complexSchema = `intent://protechmania?token=${encodeURIComponent(token)}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(import.meta.env.VITE_OFFICIAL_LINK || "https://www.tongitspinoy.com/")};end`;
-    const simpleSchema = `com.protechmania.maxfun://protechmania?token=${encodeURIComponent(token)}&scene=${scene}`;
-
-    const isModernChrome = /android\s.+chrome\/(\d+)/i.test(
-      navigator.userAgent,
-    );
-
-    if (isModernChrome) {
-      location.href = complexSchema;
-    } else {
-      callSchema(simpleSchema);
+  if (navigator.userAgent.match(/micromessenger|baidubrowser/i)) {
+    // 微信、qq、百度游览器等，不能进行唤醒
+    showDialog({ message: "Please use the viewer to open." });
+  } else if (shouldUseComplexSchema) {
+    try {
+      schema = `intent://protechmania?token=${encodeURIComponent(
+        token,
+      )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(
+        window.location.origin + "/",
+      )};end`;
+      location.href = schema;
+      setTimeout(goToDownload, 600);
+    } catch (e) {
+      alert(e);
+      goToDownload();
     }
-
+  } else {
+    callSchema(schema);
     setTimeout(goToDownload, 600);
   }
 };
 
-const copyContent = () => {
-  if (isAndroid) {
-    toClipboard(sInviteCode.value).catch(() => {
-      showDialog({ message: "Error copying invite code." });
-    });
-  } else {
-    goToDownload();
+const onClick = () => {
+  if (!canUseUniversalLink()) {
+    onWeekApp();
   }
-  openOrDownload();
 };
 
-onMounted(onOpenThisPage);
+const { toClipboard } = useClipboard();
+const copyContent = () => {
+  const isAndroid =
+    navigator.userAgent.match(/iphone|ipod|ipad|Android/i) == "Android";
+  if (!isAndroid) {
+    goToDownload();
+  } else {
+    // toClipboard(sInviteCode.value).catch(() => {
+    //   showDialog({ message: "Error! Please open our website correctly!" });
+    // });
+    onClick();
+  }
+};
+
+// ----------------------------------------------------------------------- 子组件start
+// ----------------------------------------------------------------------- 子组件end
 </script>
 
 <style scoped>
