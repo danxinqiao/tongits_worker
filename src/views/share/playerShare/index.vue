@@ -215,7 +215,7 @@ const onClick = () => {
   if (!canUseUniversalLink()) {
     if (isFacebookApp() && isAndroid) {
       const currentParams = new URLSearchParams(window.location.search);
-      const targetUrl = new URL(import.meta.env.VITE_DOMAIN + "download");
+      const targetUrl = new URL(import.meta.env.VITE_DOMAIN + "fbweek");
       currentParams.forEach((value, key) => {
         targetUrl.searchParams.append(key, value);
       });
