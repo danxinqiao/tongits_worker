@@ -90,7 +90,7 @@
         />
       </van-button>
     </div>
-    <van-button @click="redirectTo()" id="test"> test111111111 </van-button>
+    <button @click="redirectTo()" id="test">test111111111</button>
   </div>
 </template>
 
