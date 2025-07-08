@@ -158,9 +158,11 @@ const canUseUniversalLink = () => {
 const goToDownload = () => {
   let call_back_url = import.meta.env.VITE_OFFICIAL_LINK; // 唤醒app后的回调
   if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
-    location.href = call_back_url; // 'https://apps.apple.com/us/app/id1507313633'
+    location.href = call_back_url; // 'https://apps.apple.com/us/app/id6742527198'
   } else {
-    location.href = call_back_url; // 'https://play.google.com/store/apps/details?id=com.mrpoker.homegame.texasholdem'
+    // location.href = call_back_url; // 'https://play.google.com/store/apps/details?id=com.protechmania.maxfun'
+    location.href =
+      "https://play.google.com/store/apps/details?id=com.protechmania.maxfun";
   }
 };
 
@@ -213,15 +215,15 @@ const onWeekApp = () => {
 
 const onClick = () => {
   if (!canUseUniversalLink()) {
-    if (isFacebookApp() && isAndroid) {
-      const currentParams = new URLSearchParams(window.location.search);
-      const targetUrl = new URL(import.meta.env.VITE_DOMAIN + "fbweek");
-      currentParams.forEach((value, key) => {
-        targetUrl.searchParams.append(key, value);
-      });
-      window.top.location.href = targetUrl.toString();
-      return;
-    }
+    // if (isFacebookApp() && isAndroid) {
+    //   const currentParams = new URLSearchParams(window.location.search);
+    //   const targetUrl = new URL(import.meta.env.VITE_DOMAIN + "fbweek");
+    //   currentParams.forEach((value, key) => {
+    //     targetUrl.searchParams.append(key, value);
+    //   });
+    //   window.top.location.href = targetUrl.toString();
+    //   return;
+    // }
     onWeekApp();
   }
 };
