@@ -6,6 +6,7 @@ export default {
       isMobile: false,
       down_apple_shop: import.meta.env.VITE_DOWN_APPLE_SHOP,
       down_official_apk: import.meta.env.VITE_DOWN_OFFICIAL_APK,
+      down_official_new_apk: import.meta.env.VITE_DOWN_OFFICIAL_NEW_APK,
       down_google_shop: import.meta.env.VITE_DOWN_GOOGLE_SHOP,
     };
   },
@@ -22,7 +23,7 @@ export default {
       // 检测移动端设备
       this.isMobile =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-          userAgent
+          userAgent,
         );
     },
   },
@@ -71,10 +72,24 @@ export default {
           </a>
         </div>
         <div>
-          <a :href="down_official_apk" target="_blank">
+          <a
+            :href="down_official_new_apk"
+            target="_blank"
+            class="download-link"
+          >
             <img
               class="home_img"
               src="/img_tg_pinoy.png"
+              alt="android install"
+            />
+            <img class="corner-badge" src="/img_new.png" alt="new" />
+          </a>
+        </div>
+        <div>
+          <a :href="down_official_apk" target="_blank">
+            <img
+              class="home_img"
+              src="/img_tg_pinoy2.png"
               alt="android install"
             />
           </a>
@@ -112,10 +127,24 @@ export default {
             </a>
           </div>
           <div>
-            <a :href="down_official_apk" target="_blank">
+            <a
+              :href="down_official_new_apk"
+              target="_blank"
+              class="download-link mobile"
+            >
               <img
                 class="home_img_m"
                 src="/img_tg_pinoy.png"
+                alt="android install"
+              />
+              <img class="corner-badge-m" src="/img_new.png" alt="new" />
+            </a>
+          </div>
+          <div>
+            <a :href="down_official_apk" target="_blank">
+              <img
+                class="home_img_m"
+                src="/img_tg_pinoy2.png"
                 alt="android install"
               />
             </a>
@@ -154,10 +183,35 @@ export default {
   margin: 0 auto 18px auto;
 }
 
+.download-link {
+  position: relative;
+  /* display: inline-block; */
+}
+
+.corner-badge {
+  position: absolute;
+  top: -11px;
+  right: -30px;
+  width: 25%;
+  max-width: 80px;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
 .home_img_m {
   object-fit: contain;
   max-width: 50%;
   margin: 0 auto 18px auto;
+}
+
+.corner-badge-m {
+  position: absolute;
+  top: -8px;
+  right: -19px;
+  width: 25%;
+  max-width: 80px;
+  z-index: 2;
+  transition: transform 0.3s ease;
 }
 
 .home_tips_img_m {

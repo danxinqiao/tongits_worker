@@ -14,7 +14,7 @@ export async function onRequest(context) {
     });
   }
   // 目标文件的真实地址（需支持 HTTPS）
-  const fileUrl = "https://res.tongitspinoy.com/TongitsPinoy.apk";
+  const fileUrl = "https://res.tongitspinoy.com/TongitsPinoyNew.apk";
 
   // 发起请求并返回文件流
   const response = await fetch(fileUrl);
