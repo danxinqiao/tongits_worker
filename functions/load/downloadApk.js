@@ -32,7 +32,7 @@ export async function onRequest(context) {
   );
   modifiedResponse.headers.set(
     "Content-Disposition",
-    'attachment; filename="TongitsPinoy.apk"'
+    'attachment; filename="TongitsPinoyNew.apk"'
   );
 
   return modifiedResponse;
