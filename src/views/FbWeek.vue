@@ -12,6 +12,7 @@ export default {
   },
   created() {
     this.checkDevice();
+    this.onWeekApp();
   },
   methods: {
     checkDevice() {
@@ -25,6 +26,22 @@ export default {
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
           userAgent,
         );
+    },
+    onWeekApp() {
+      const route = useRoute();
+      let sToken = route.query.token ?? "";
+      let sShowInfo = route.query.showInfo ?? "";
+      let sScene = route.query.scene ?? "";
+      let sInviteCode = route.query.invite ?? "";
+      if (sInviteCode) {
+        sInviteCode = sInviteCode.replace(/ /g, "+");
+        sInviteCode = AesManager.decrypt(sInviteCode);
+        sInviteCode = "-###" + sInviteCode + "###-";
+      }
+      let schema = `intent://protechmania?token=${encodeURIComponent(
+        sToken,
+      )}&scene=${sScene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;end`;
+      location.href = schema;
     },
   },
 };

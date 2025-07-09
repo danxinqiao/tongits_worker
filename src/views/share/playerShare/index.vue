@@ -118,10 +118,11 @@ onMounted(() => {
   onOpenThisPage();
 });
 
+const isAndroid =
+  navigator.userAgent.match(/iphone|ipod|ipad|Android/i) == "Android";
+
 //判断设备类型是不是安卓，android:true ios:false
 const deviceType = computed(() => {
-  const isAndroid =
-    navigator.userAgent.match(/iphone|ipod|ipad|Android/i) == "Android";
   return isAndroid ? true : false;
 });
 
@@ -153,7 +154,7 @@ const canUseUniversalLink = () => {
 };
 
 const goToDownload = () => {
-  let call_back_url = import.meta.env.VITE_OFFICIAL_LINK; // 唤醒app后的回调
+  let call_back_url = window.location.origin; // 唤醒app后的回调
   if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
     location.href = call_back_url; // 'https://apps.apple.com/us/app/id1507313633'
   } else {
@@ -212,14 +213,25 @@ const onWeekApp = () => {
 
 const onClick = () => {
   if (!canUseUniversalLink()) {
+    if (isFacebookApp() && isAndroid) {
+      const currentParams = new URLSearchParams(window.location.search);
+      const targetUrl = new URL(window.location.origin + "/fbweek");
+      currentParams.forEach((value, key) => {
+        targetUrl.searchParams.append(key, value);
+      });
+      window.top.location.href = targetUrl.toString();
+      return;
+    }
     onWeekApp();
   }
 };
 
+const isFacebookApp = () => {
+  return navigator.userAgent.match(/FBAN|FBAV/i) !== null;
+};
+
 const { toClipboard } = useClipboard();
 const copyContent = () => {
-  const isAndroid =
-    navigator.userAgent.match(/iphone|ipod|ipad|Android/i) == "Android";
   if (!isAndroid) {
     goToDownload();
   } else {

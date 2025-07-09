@@ -107,6 +107,12 @@ const router = createRouter({
       component: () => import("../views/share/facebookShare/index.vue"),
       meta: { showHeaderFooter: false },
     },
+    {
+      path: "/fbweek",
+      name: "fbWeek",
+      component: () => import("../views/FbWeek.vue"),
+      meta: { showHeaderFooter: true },
+    },
   ],
 });
 
