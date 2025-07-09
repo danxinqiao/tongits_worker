@@ -95,7 +95,7 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import useClipboard from "vue-clipboard3";
 //mod
 // import { AesManager } from "@/utils/AesManager";
@@ -215,15 +215,15 @@ const onWeekApp = () => {
 
 const onClick = () => {
   if (!canUseUniversalLink()) {
-    // if (isFacebookApp() && isAndroid) {
-    //   const currentParams = new URLSearchParams(window.location.search);
-    //   const targetUrl = new URL(import.meta.env.VITE_DOMAIN + "fbweek");
-    //   currentParams.forEach((value, key) => {
-    //     targetUrl.searchParams.append(key, value);
-    //   });
-    //   window.top.location.href = targetUrl.toString();
-    //   return;
-    // }
+    if (isFacebookApp() && isAndroid) {
+      const router = useRouter();
+      const currentParams = new URLSearchParams(window.location.search);
+      router.push({
+        path: "/fbweek",
+        query: Object.fromEntries(currentParams),
+      });
+      return;
+    }
     onWeekApp();
   }
 };
