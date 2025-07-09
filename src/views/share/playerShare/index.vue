@@ -95,7 +95,7 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import useClipboard from "vue-clipboard3";
 //mod
 // import { AesManager } from "@/utils/AesManager";
@@ -216,12 +216,12 @@ const onWeekApp = () => {
 const onClick = () => {
   if (!canUseUniversalLink()) {
     if (isFacebookApp() && isAndroid) {
-      const router = useRouter();
       const currentParams = new URLSearchParams(window.location.search);
-      router.push({
-        path: "/fbweek",
-        query: Object.fromEntries(currentParams),
+      const targetUrl = new URL(window.location.origin + "/fbweek");
+      currentParams.forEach((value, key) => {
+        targetUrl.searchParams.append(key, value);
       });
+      window.top.location.href = targetUrl.toString();
       return;
     }
     onWeekApp();
@@ -237,9 +237,9 @@ const copyContent = () => {
   if (!isAndroid) {
     goToDownload();
   } else {
-    // toClipboard(sInviteCode.value).catch(() => {
-    //   showDialog({ message: "Error! Please open our website correctly!" });
-    // });
+    toClipboard(sInviteCode.value).catch(() => {
+      showDialog({ message: "Error! Please open our website correctly!" });
+    });
     onClick();
   }
 };
