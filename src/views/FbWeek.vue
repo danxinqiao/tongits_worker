@@ -1,4 +1,5 @@
 <script>
+import { useRoute } from "vue-router";
 export default {
   data() {
     return {
@@ -102,15 +103,15 @@ export default {
             <img class="corner-badge" src="/img_new.png" alt="new" />
           </a>
         </div>
-        <!-- <div>
-          <a :href="down_official_apk" target="_blank">
+        <div>
+          <a href="javascript:void(0)">
             <img
-              class="home_img"
+              class="home_img grayscale"
               src="/img_tg_pinoy2.png"
               alt="android install"
             />
           </a>
-        </div> -->
+        </div>
       </div>
     </template>
 
@@ -157,15 +158,15 @@ export default {
               <img class="corner-badge-m" src="/img_new.png" alt="new" />
             </a>
           </div>
-          <!-- <div>
-            <a :href="down_official_apk" target="_blank">
+          <div>
+            <a href="javascript:void(0)">
               <img
-                class="home_img_m"
+                class="home_img_m grayscale"
                 src="/img_tg_pinoy2.png"
                 alt="android install"
               />
             </a>
-          </div> -->
+          </div>
         </template>
       </div>
     </template>
@@ -262,6 +263,12 @@ export default {
 }
 .download_box {
   text-align: center;
+}
+
+.grayscale {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  transition: all 0.3s ease;
 }
 
 @media (min-width: 768px) {
