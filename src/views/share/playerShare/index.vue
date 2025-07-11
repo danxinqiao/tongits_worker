@@ -181,7 +181,7 @@ const onWeekApp = () => {
     token,
   )}&scene=${scene}`;
   let shouldUseComplexSchema = false;
-  console.log("schema", schema);
+  // console.log("schema", schema);
 
   const androidChromeMatch = navigator.userAgent.match(
     /android\s.+chrome\/(\d+)/i,
@@ -201,7 +201,7 @@ const onWeekApp = () => {
     schema = `intent://protechmania?token=${encodeURIComponent(
       token,
     )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(
-      "https://www.tongitspinoy.com/",
+      window.location.origin,
     )};end`;
     location.href = schema;
     setTimeout(goToDownload, 600);

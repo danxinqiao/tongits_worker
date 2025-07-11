@@ -1,5 +1,6 @@
 <script>
 import { useRoute } from "vue-router";
+import { AesManager } from "../../../utils/AesManager";
 export default {
   data() {
     return {
