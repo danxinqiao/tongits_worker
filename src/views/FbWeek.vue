@@ -5,6 +5,9 @@ export default {
     return {
       isIOS: false,
       isMobile: false,
+      show_old_btn:
+        new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Shanghai" }) <
+        "2025-07-15",
       down_apple_shop: import.meta.env.VITE_DOWN_APPLE_SHOP,
       down_official_apk: import.meta.env.VITE_DOWN_OFFICIAL_APK,
       down_official_new_apk: import.meta.env.VITE_DOWN_OFFICIAL_NEW_APK,
@@ -103,7 +106,7 @@ export default {
             <img class="corner-badge" src="/img_new.png" alt="new" />
           </a>
         </div>
-        <div>
+        <div v-if="show_old_btn">
           <a href="javascript:void(0)">
             <img
               class="home_img grayscale"
@@ -158,8 +161,8 @@ export default {
               <img class="corner-badge-m" src="/img_new.png" alt="new" />
             </a>
           </div>
-          <div>
-            <a href="javascript:void(0)">
+          <div v-if="show_old_btn">
+            <a href="javascript:void(0)" class="disabled-link">
               <img
                 class="home_img_m grayscale"
                 src="/img_tg_pinoy2.png"
@@ -269,6 +272,11 @@ export default {
   filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
   transition: all 0.3s ease;
+}
+
+.disabled-link {
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 @media (min-width: 768px) {
