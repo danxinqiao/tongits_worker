@@ -1,17 +1,25 @@
 <script>
 import { useRoute } from "vue-router";
+<<<<<<< HEAD
 import { AesManager } from "../utils/AesManager";
+=======
+>>>>>>> public/pre
 export default {
   data() {
     return {
       isIOS: false,
       isMobile: false,
+<<<<<<< HEAD
       show_old_btn:
         new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Shanghai" }) <
         "2025-07-15",
       down_apple_shop: import.meta.env.VITE_DOWN_APPLE_SHOP,
       down_official_apk: import.meta.env.VITE_DOWN_OFFICIAL_APK,
       down_official_new_apk: import.meta.env.VITE_DOWN_OFFICIAL_NEW_APK,
+=======
+      down_apple_shop: import.meta.env.VITE_DOWN_APPLE_SHOP,
+      down_official_apk: import.meta.env.VITE_DOWN_OFFICIAL_APK,
+>>>>>>> public/pre
       down_google_shop: import.meta.env.VITE_DOWN_GOOGLE_SHOP,
     };
   },
@@ -67,6 +75,7 @@ export default {
 
     <!-- 非移动端显示全部 -->
     <template v-if="!isMobile">
+<<<<<<< HEAD
       <div class="tips_box">
         <img
           class="home_tips_img"
@@ -74,6 +83,15 @@ export default {
           alt="ios install tips"
         />
       </div>
+=======
+      <!-- <div class="tips_box">
+        <img
+          class="home_img"
+          src="/ios_install_tips_1.png"
+          alt="ios install tips"
+        />
+      </div> -->
+>>>>>>> public/pre
       <div class="download_box">
         <div>
           <a target="_blank" :href="down_apple_shop">
@@ -85,6 +103,7 @@ export default {
           </a>
         </div>
         <div>
+<<<<<<< HEAD
           <a :href="down_google_shop" target="_blank">
             <img
               class="home_img"
@@ -99,11 +118,15 @@ export default {
             target="_blank"
             class="download-link"
           >
+=======
+          <a :href="down_official_apk" target="_blank">
+>>>>>>> public/pre
             <img
               class="home_img"
               src="/img_tg_pinoy.png"
               alt="android install"
             />
+<<<<<<< HEAD
             <img class="corner-badge" src="/img_new.png" alt="new" />
           </a>
         </div>
@@ -113,6 +136,16 @@ export default {
               class="home_img grayscale"
               src="/img_tg_pinoy2.png"
               alt="android install"
+=======
+          </a>
+        </div>
+        <div>
+          <a :href="down_google_shop" target="_blank">
+            <img
+              class="home_img"
+              src="/img_tg_google.png"
+              alt="google playStore install"
+>>>>>>> public/pre
             />
           </a>
         </div>
@@ -121,6 +154,7 @@ export default {
 
     <!-- 移动端显示 -->
     <template v-else>
+<<<<<<< HEAD
       <div class="tips_box" v-if="isIOS">
         <img
           class="home_tips_img_m"
@@ -128,6 +162,15 @@ export default {
           alt="ios install tips"
         />
       </div>
+=======
+      <!-- <div class="tips_box" v-if="isIOS">
+        <img
+          class="home_img"
+          src="/ios_install_tips_1.png"
+          alt="ios install tips"
+        />
+      </div> -->
+>>>>>>> public/pre
       <div class="download_box">
         <div v-if="isIOS">
           <a target="_blank" :href="down_apple_shop">
@@ -140,6 +183,7 @@ export default {
         </div>
         <template v-if="!isIOS">
           <div>
+<<<<<<< HEAD
             <a :href="down_google_shop" target="_blank">
               <img
                 class="home_img_m"
@@ -154,11 +198,15 @@ export default {
               target="_blank"
               class="download-link mobile"
             >
+=======
+            <a :href="down_official_apk" target="_blank">
+>>>>>>> public/pre
               <img
                 class="home_img_m"
                 src="/img_tg_pinoy.png"
                 alt="android install"
               />
+<<<<<<< HEAD
               <img class="corner-badge-m" src="/img_new.png" alt="new" />
             </a>
           </div>
@@ -168,6 +216,16 @@ export default {
                 class="home_img_m grayscale"
                 src="/img_tg_pinoy2.png"
                 alt="android install"
+=======
+            </a>
+          </div>
+          <div>
+            <a :href="down_google_shop" target="_blank">
+              <img
+                class="home_img_m"
+                src="/img_tg_google.png"
+                alt="google playStore install"
+>>>>>>> public/pre
               />
             </a>
           </div>
@@ -178,22 +236,28 @@ export default {
 </template>
 
 <style scoped>
+<<<<<<< HEAD
 .home {
   margin-left: 3vh;
   margin-right: 3vh;
 }
 
+=======
+>>>>>>> public/pre
 .img_box {
   text-align: center;
   margin: 15px auto 0 auto;
 }
 
+<<<<<<< HEAD
 .home_tips_img {
   object-fit: contain;
   max-width: 16%;
   margin: 0 auto -12px auto;
 }
 
+=======
+>>>>>>> public/pre
 .img_box2 {
   object-fit: contain;
   max-width: 60%;
@@ -205,6 +269,7 @@ export default {
   margin: 0 auto 18px auto;
 }
 
+<<<<<<< HEAD
 .download-link {
   position: relative;
   /* display: inline-block; */
@@ -220,12 +285,15 @@ export default {
   transition: transform 0.3s ease;
 }
 
+=======
+>>>>>>> public/pre
 .home_img_m {
   object-fit: contain;
   max-width: 50%;
   margin: 0 auto 18px auto;
 }
 
+<<<<<<< HEAD
 .corner-badge-m {
   position: absolute;
   top: -8px;
@@ -242,6 +310,8 @@ export default {
   margin: 0 auto -6px auto;
 }
 
+=======
+>>>>>>> public/pre
 .introduction_box {
   text-align: center;
   margin: 0 auto 18px auto;
@@ -269,6 +339,7 @@ export default {
   text-align: center;
 }
 
+<<<<<<< HEAD
 .grayscale {
   filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
@@ -280,6 +351,8 @@ export default {
   pointer-events: none;
 }
 
+=======
+>>>>>>> public/pre
 @media (min-width: 768px) {
   .home_img_m {
     width: 45%;

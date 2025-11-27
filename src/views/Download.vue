@@ -25,7 +25,7 @@ const checkDevice = () => {
   isIOS.value = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
   isMobile.value =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      userAgent
+      userAgent,
     );
 };
 

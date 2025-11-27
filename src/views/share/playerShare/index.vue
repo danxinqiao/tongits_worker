@@ -156,9 +156,11 @@ const canUseUniversalLink = () => {
 const goToDownload = () => {
   let call_back_url = window.location.origin; // 唤醒app后的回调
   if (navigator.userAgent.match(/iphone|ipad|ipod/i)) {
-    location.href = call_back_url; // 'https://apps.apple.com/us/app/id1507313633'
+    location.href = call_back_url; // 'https://apps.apple.com/us/app/id6742527198'
   } else {
-    location.href = call_back_url; // 'https://play.google.com/store/apps/details?id=com.mrpoker.homegame.texasholdem'
+    // location.href = call_back_url; // 'https://play.google.com/store/apps/details?id=com.protechmania.maxfun'
+    location.href =
+      "https://play.google.com/store/apps/details?id=com.protechmania.maxfun";
   }
 };
 
@@ -181,7 +183,11 @@ const onWeekApp = () => {
     token,
   )}&scene=${scene}`;
   let shouldUseComplexSchema = false;
+<<<<<<< HEAD
   // console.log("schema", schema);
+=======
+  console.log("schema", schema);
+>>>>>>> public/pre
 
   const androidChromeMatch = navigator.userAgent.match(
     /android\s.+chrome\/(\d+)/i,
@@ -200,9 +206,13 @@ const onWeekApp = () => {
   } else if (shouldUseComplexSchema) {
     schema = `intent://protechmania?token=${encodeURIComponent(
       token,
+<<<<<<< HEAD
     )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(
       window.location.origin,
     )};end`;
+=======
+    )}&scene=${scene}#Intent;scheme=com.protechmania.maxfun;package=com.protechmania.maxfun;S.browser_fallback_url=${encodeURIComponent(import.meta.env.VITE_OFFICIAL_LINK)};end`;
+>>>>>>> public/pre
     location.href = schema;
     setTimeout(goToDownload, 600);
   } else {
